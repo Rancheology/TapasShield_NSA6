@@ -1,4 +1,4 @@
-# TapasShield (NSA 6.0)
+﻿# TapasShield (NSA 6.0)
 ### Industrial IIoT Boiler Telemetry, Anti-Falsification Ledger & Predictive Maintenance Platform
 **Competition:** National Startup Awards 6.0 (NSA 6.0) &bull; Student Innovator (Sub-Category IV: 18+ Years)  
 **Track Alignment:** Shakti Ki Sapta Dhara &bull; Stream 1: Manufacturing (Cost, Quality and Scale)  
@@ -53,7 +53,7 @@ conda run -n tapasshield-nsa6 python presentation/generate_nsa6_deck.py
 ### KiCad 8 PCB & Schematic Regeneration & DRC Verification
 ```bash
 conda run -n tapasshield-nsa6 python hardware/generate_kicad_board.py
-& "C:\Users\A0SKZ\APPS\bin\kicad-cli.exe" pcb drc hardware/tapasshield_edge.kicad_pcb --format json --output hardware/drc_report.json
+kicad-cli pcb drc hardware/tapasshield_edge.kicad_pcb --format json --output hardware/drc_report.json
 ```
 
 ### ESP32-S3 C++ Firmware Build (PlatformIO)
@@ -84,3 +84,26 @@ cd frontend
 npm run dev
 ```
 Navigate to `http://localhost:5173`.
+
+
+
+---
+
+## 4. Quick Start (Clone & Run Anywhere)
+
+Run the complete TapasShield stack locally (requires Python 3.10+ and Node.js 18+):
+
+```bash
+git clone https://github.com/Rancheology/TapasShield_NSA6.git
+cd TapasShield_NSA6
+pip install -r requirements.txt
+cd frontend && npm install && npm run build && cd ..
+uvicorn backend.main:app --host 0.0.0.0 --port 8000
+```
+
+Open http://localhost:8000 in your browser to access the live Dual-Access Online Register.
+
+### Run Verification Test Suite
+```bash
+pytest tests/
+```
