@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TapasShield NSA 6.0 — Visual Hardware & Portal Guide</title>
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* RESET & BASE VARIABLES */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    @page {
+      size: 1600px 900px;
+      margin: 0;
+    }
+    
+    body {
+      background-color: #030712;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* SLIDE CONTAINER */
+    .slide {
+      width: 1600px;
+      height: 900px;
+      min-width: 1600px;
+      max-width: 1600px;
+      min-height: 900px;
+      max-height: 900px;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 44px 56px 36px 56px;
+    }
+
+    #slide-10 { page-break-after: always; }
+    #slide-15 { page-break-after: auto; }
+
+    /* THEME 3: CLEAN WARM-WHITE STUDIO CANVAS (Slides 11, 12, 13, 14) */
+    .theme-studio {
+      background-color: #FAF9F6;
+      background-image: 
+        radial-gradient(circle at 92% 8%, rgba(14, 165, 233, 0.035) 0%, transparent 40%),
+        radial-gradient(rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+      background-size: 100% 100%, 20px 20px;
+      color: #0F172A;
+    }
+
+    .studio-frame {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      position: relative;
+    }
+
+    .pin-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #0F172A;
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      border: 2px solid #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .pill-studio {
+      background: #F1F5F9;
+      color: #334155;
+      border: 1px solid #CBD5E1;
+    }
+
+    /* THEME 1: DEEP SOVEREIGN NAVY (Slides 1, 5, 10) */
+    .theme-navy {
+      background-color: #070D1A;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.10) 0%, transparent 45%),
+        radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 28px 28px;
+      color: #F8FAFC;
+    }
+
+    /* THEME 2: CRISP WARM EDITORIAL ALABASTER (Slides 2, 3, 4, 6, 7, 8, 9) */
+    .theme-light {
+      background-color: #F8FAFC;
+      background-image: 
+        radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+        radial-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 24px 24px;
+      color: #0F172A;
+    }
+
+    /* TYPOGRAPHY */
+    .font-heading {
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* HEADER & FOOTER */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      z-index: 10;
+    }
+    .kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      margin-bottom: 10px;
+    }
+    .pill-navy {
+      background: rgba(14, 165, 233, 0.15);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+    .pill-light {
+      background: #EFF6FF;
+      color: #0284C7;
+      border: 1px solid #BAE6FD;
+    }
+    .rubric-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+    .rubric-navy {
+      background: rgba(245, 158, 11, 0.15);
+      color: #FBBF24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .rubric-light {
+      background: #FEF3C7;
+      color: #D97706;
+      border: 1px solid #FDE68A;
+    }
+
+    .slide-title-navy {
+      font-size: 34px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .slide-title-light {
+      font-size: 33px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* FOOTER */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 36px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-top: 1px solid;
+      padding-top: 10px;
+      z-index: 10;
+    }
+    .footer-navy {
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #94A3B8;
+    }
+    .footer-light {
+      border-color: #E2E8F0;
+      color: #64748B;
+    }
+
+    /* CARDS & GLASS */
+    .card-navy {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    }
+    .card-light {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    /* BROWSER FRAME */
+    .browser-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #090E17;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+    }
+    .browser-header {
+      background: #0F172A;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+    .browser-url {
+      flex: 1;
+      background: #1E293B;
+      color: #94A3B8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 6px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    .badge-live {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    /* SLIDE 1 HERO */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 52% 48%;
+      gap: 36px;
+      height: 710px;
+      align-items: center;
+    }
+    .hero-kpis {
+      display: flex;
+      gap: 14px;
+      margin-top: 36px;
+    }
+    .hero-kpi-pill {
+      flex: 1;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+    }
+    .hero-kpi-val {
+      font-size: 26px;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 4px;
+    }
+    .hero-kpi-lbl {
+      font-size: 12px;
+      color: #94A3B8;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    /* SLIDE 2 BENTO */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      grid-template-rows: 270px 240px 110px;
+      gap: 20px;
+      height: 690px;
+    }
+    .bento-tall {
+      grid-row: 1 / 3;
+      background: #FFF1F2;
+      border: 1.5px solid #FECDD3;
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bento-wide {
+      background: #EFF6FF;
+      border: 1.5px solid #BFDBFE;
+      border-radius: 18px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bento-mid {
+      background: #FFFBEB;
+      border: 1.5px solid #FDE68A;
+      border-radius: 18px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bento-strip {
+      grid-column: 1 / 3;
+      background: #090E17;
+      border-radius: 14px;
+      padding: 16px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #1E293B;
+      color: #FFFFFF;
+    }
+
+    /* SLIDE 3 BENCHMARK */
+    .split-3 {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 32px;
+      height: 700px;
+    }
+    .navy-bleed {
+      background: #090E17;
+      border-radius: 20px;
+      padding: 36px 32px;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .timeline-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid #38BDF8;
+      color: #38BDF8;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* TABLE */
+    .benchmark-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      height: 100%;
+    }
+    .benchmark-table th {
+      padding: 18px 16px;
+      text-align: left;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 2px solid #E2E8F0;
+      background: #F8FAFC;
+    }
+    .benchmark-table td {
+      padding: 16px;
+      font-size: 13.5px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #334155;
+      vertical-align: middle;
+    }
+    .th-highlight {
+      background: #ECFDF5 !important;
+      color: #065F46 !important;
+      border-top: 4px solid #10B981;
+    }
+    .td-highlight {
+      background: #F0FDF4 !important;
+      font-weight: 600;
+      color: #064E3B !important;
+    }
+
+    /* ICONS */
+    .icon-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #DCFCE7;
+      color: #16A34A;
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .icon-cross {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FEE2E2;
+      color: #DC2626;
+      font-weight: bold;
+      font-size: 13px;
+    }
+  </style>
+
+  <style> #slide-15 { page-break-after: auto !important; } </style>
+</head>
+<body>
+  <div class="deck-container">
+    
+<section class="slide theme-studio" id="slide-11">
+    <div class="slide-header">
+      <div>
+        <div class="kicker-pill pill-studio">
+          <span style="color:#0284C7;">●</span> VISUAL GUIDE 01 • HARDWARE INSPECTION
+        </div>
+        <h2 class="slide-title-light font-heading" style="color: #0F172A; font-size: 34px;">
+          All-Around Look: TapasShield SIL-2 Edge Node PCB
+        </h2>
+      </div>
+      <div class="rubric-tag" style="background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD;">
+        360° TEARDOWN
+      </div>
+    </div>
+
+    <!-- Main Teardown Showcase Grid (55% / 45% Split) -->
+    <div style="display: grid; grid-template-columns: 56% 44%; gap: 20px; height: 670px; margin-bottom: 8px;">
+      
+      <!-- Left Main Hero Frame: Top-Down Studio PCB with Callout Pins -->
+      <div class="studio-frame" style="padding: 14px; display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+        <!-- Top Micro Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; z-index: 5;">
+          <span class="font-mono" style="font-size: 11px; font-weight: 700; color: #0284C7; text-transform: uppercase;">
+            PRIMARY COMPONENT PLACEMENT (TOP LAYER • F.Cu)
+          </span>
+          <span class="font-mono" style="font-size: 11px; font-weight: 700; background: #F1F5F9; color: #475569; padding: 3px 8px; border-radius: 4px;">
+            120 × 90 mm FR4 • 1.6mm ENIG
+          </span>
+        </div>
+
+        <!-- Center Image with Relative Callout Pins (Physical Placement Coordinates) -->
+        <div style="position: relative; flex: 1; display: flex; align-items: center; justify-content: center; margin: 4px 0; overflow: hidden;">
+          <img src="visual_assets/pcb_top_clean.png" alt="TapasShield PCB Top View" style="max-width: 100%; max-height: 490px; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(15,23,42,0.12));">
+
+          <!-- Pin 01: J1 Power Input (top left: x≈16%, y≈20%) -->
+          <div style="position: absolute; top: 16%; left: 8%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+            <div class="pin-badge" style="background: #DC2626;">01</div>
+            <div class="font-mono" style="font-size: 9.5px; font-weight: 700; background: rgba(255,255,255,0.96); border: 1px solid #CBD5E1; color: #0F172A; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              J1: 24V DC In (B540C)
+            </div>
+          </div>
+
+          <!-- Pin 02: U4/L1/U5 Regulators (top center: x≈48%, y≈17%) -->
+          <div style="position: absolute; top: 12%; left: 44%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+            <div class="pin-badge" style="background: #D97706;">02</div>
+            <div class="font-mono" style="font-size: 9.5px; font-weight: 700; background: rgba(255,255,255,0.96); border: 1px solid #CBD5E1; color: #0F172A; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              U4/L1/U5: 24V➔5V➔3.3V
+            </div>
+          </div>
+
+          <!-- Pin 03: J2-J6 Loops (left-edge terminal column: x≈16%, y≈56%) -->
+          <div style="position: absolute; top: 52%; left: 7%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+            <div class="pin-badge" style="background: #0284C7;">03</div>
+            <div class="font-mono" style="font-size: 9.5px; font-weight: 700; background: rgba(255,255,255,0.96); border: 1px solid #CBD5E1; color: #0F172A; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              J2–J6: 5× 4–20mA + TVS
+            </div>
+          </div>
+
+          <!-- Pin 04: U3 ADS1115 ADC (center: x≈53%, y≈46%) -->
+          <div style="position: absolute; top: 43%; left: 46%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+            <div class="pin-badge" style="background: #0284C7;">04</div>
+            <div class="font-mono" style="font-size: 9.5px; font-weight: 700; background: rgba(255,255,255,0.96); border: 1px solid #CBD5E1; color: #0F172A; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              U3: ADS1115 16-Bit ADC
+            </div>
+          </div>
+
+          <!-- Pin 05: U2 ATECC608B (lower center: x≈53%, y≈64%) -->
+          <div style="position: absolute; top: 62%; left: 45%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+            <div class="pin-badge" style="background: #059669;">05</div>
+            <div class="font-mono" style="font-size: 9.5px; font-weight: 700; background: rgba(255,255,255,0.96); border: 1px solid #CBD5E1; color: #0F172A; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              U2: ATECC608B Crypto
+            </div>
+          </div>
+
+          <!-- Pin 06: U1 ESP32-S3 & LEDs (right side RF shield: x≈73%, y≈50%) -->
+          <div style="position: absolute; top: 46%; right: 7%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+            <div class="pin-badge" style="background: #7C3AED;">06</div>
+            <div class="font-mono" style="font-size: 9.5px; font-weight: 700; background: rgba(255,255,255,0.96); border: 1px solid #CBD5E1; color: #0F172A; padding: 3px 7px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              U1: ESP32-S3 + SW1 + LEDs
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Micro Legend Strip -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 8px 12px; border-radius: 8px;">
+          <div style="font-size: 11px; color: #334155;"><strong>01:</strong> 24V DC reverse-polarity guard</div>
+          <div style="font-size: 11px; color: #334155;"><strong>02:</strong> High-efficiency buck steps</div>
+          <div style="font-size: 11px; color: #334155;"><strong>03:</strong> 5× screw blocks + TVS protection</div>
+          <div style="font-size: 11px; color: #334155;"><strong>04:</strong> 16-bit ΔΣ high-resolution ADC</div>
+          <div style="font-size: 11px; color: #334155;"><strong>05:</strong> ECDSA SHA-256 hardware root</div>
+          <div style="font-size: 11px; color: #334155;"><strong>06:</strong> Dual-core 240MHz SoC + tamper</div>
+        </div>
+      </div>
+
+      <!-- Right Column: 3/4 Perspective & High-Detail Macros -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        
+        <!-- Top Right Frame: 3/4 Perspective View -->
+        <div class="studio-frame" style="height: 326px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; z-index: 5;">
+            <span class="font-mono" style="font-size: 11px; font-weight: 700; color: #0F172A; text-transform: uppercase;">
+              3/4 PERSPECTIVE • SCREW TERMINALS &amp; CORNER MOUNTS
+            </span>
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #ECFDF5; color: #065F46; padding: 2px 6px; border-radius: 4px;">
+              4× M3 STANDOFFS
+            </span>
+          </div>
+          
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <img src="visual_assets/pcb_iso_terminals.png" alt="3/4 ISO Terminals" style="max-height: 240px; max-width: 100%; object-fit: contain;">
+          </div>
+
+          <div style="font-size: 11px; color: #64748B; line-height: 1.3;">
+            Heavy-duty Phoenix Contact 5.08mm screw terminals for vibration-proof industrial boiler mounting.
+          </div>
+        </div>
+
+        <!-- Bottom Right Split: Macro Terminals + Bottom Copper Layer -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; height: 326px;">
+          
+          <!-- Bottom Left: Macro Front-End -->
+          <div class="studio-frame" style="padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="font-mono" style="font-size: 10.5px; font-weight: 700; color: #0284C7;">
+                AFE PROTECTION
+              </span>
+              <span class="font-mono" style="font-size: 9.5px; font-weight: 700; background: #EFF6FF; color: #1E40AF; padding: 2px 5px; border-radius: 4px;">
+                400W TVS
+              </span>
+            </div>
+            
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center; margin: 4px 0; overflow: hidden;">
+              <img src="visual_assets/pcb_macro_terminals.png" alt="Macro Terminals" style="max-height: 210px; max-width: 100%; object-fit: contain;">
+            </div>
+
+            <div style="font-size: 10.5px; color: #475569; line-height: 1.3;">
+              150Ω 0.05% shunts + TVS clamp up to 400W transients.
+            </div>
+          </div>
+
+          <!-- Bottom Right: B.Cu Ground Plane -->
+          <div class="studio-frame" style="padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="font-mono" style="font-size: 10.5px; font-weight: 700; color: #059669;">
+                BOTTOM COPPER
+              </span>
+              <span class="font-mono" style="font-size: 9.5px; font-weight: 700; background: #ECFDF5; color: #065F46; padding: 2px 5px; border-radius: 4px;">
+                SOLID GND
+              </span>
+            </div>
+            
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center; margin: 4px 0; overflow: hidden;">
+              <img src="visual_assets/pcb_bottom_clean.png" alt="Bottom Copper B.Cu" style="max-height: 210px; max-width: 100%; object-fit: contain;">
+            </div>
+
+            <div style="font-size: 10.5px; color: #475569; line-height: 1.3;">
+              Continuous ground shield eliminates industrial EMI noise.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="slide-footer footer-light">
+      <div>TapasShield IIoT  •  National Startup Awards 6.0 (Visual Hardware Guide)</div>
+      <div>11 / 15</div>
+    </div>
+  </section>
+<section class="slide theme-studio" id="slide-12">
+    <div class="slide-header">
+      <div>
+        <div class="kicker-pill pill-studio">
+          <span style="color:#10B981;">●</span> VISUAL GUIDE 02 • FULL PHYSICAL CONNECTIVITY &amp; ROUTER ARCHITECTURE
+        </div>
+        <h2 class="slide-title-light font-heading" style="color: #0F172A; font-size: 34px;">
+          Direct Boiler-to-PCB Wiring Map &amp; Industrial 4G Uplink
+        </h2>
+      </div>
+      <div class="rubric-tag" style="background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;">
+        PLUG &amp; PLAY
+      </div>
+    </div>
+
+    <!-- Main Full-System Physical Wiring Illustration (object-fit: contain, zero cropping) -->
+    <div class="studio-frame" style="height: 485px; padding: 10px 14px; display: flex; align-items: center; justify-content: center; background: #FFFFFF; margin-bottom: 12px; overflow: hidden;">
+      <img src="visual_assets/physical_wiring_hero.jpg" alt="Full-System Physical Wiring &amp; Router Architecture" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+    </div>
+
+    <!-- Compact, Scannable 6-Terminal + Router Connection Strip -->
+    <div style="display: grid; grid-template-columns: 28% 42% 30%; gap: 14px; height: 195px; margin-bottom: 4px;">
+      
+      <!-- Card 1: Power (J1) -->
+      <div class="studio-frame" style="padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid #DC2626;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span class="font-mono" style="font-size: 11px; font-weight: 700; color: #DC2626; text-transform: uppercase;">
+              POWER BUS (J1)
+            </span>
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #FEF2F2; color: #991B1B; padding: 2px 6px; border-radius: 4px;">
+              24V DC DIN SMPS
+            </span>
+          </div>
+          <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 4px;">
+            Plant AC Mains ➔ 24V DC SMPS
+          </div>
+          <p style="font-size: 11px; color: #475569; line-height: 1.4;">
+            Industrial DIN-rail SMPS feeds 24V DC to terminal <strong>J1</strong> (<code class="font-mono" style="color: #DC2626; font-weight: 700;">Pin 1: +24V Red</code>, <code class="font-mono" style="color: #0F172A; font-weight: 700;">Pin 2: GND Black</code>) inside the wall-mounted IP65 box.
+          </p>
+        </div>
+        <div class="font-mono" style="font-size: 10px; color: #059669; font-weight: 700;">
+          ✓ B540C reverse-polarity guard + 400W TVS clamp
+        </div>
+      </div>
+
+      <!-- Card 2: Boiler Loops (J2–J6) -->
+      <div class="studio-frame" style="padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid #0284C7;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span class="font-mono" style="font-size: 11px; font-weight: 700; color: #0284C7; text-transform: uppercase;">
+              BOILER LOOPS (J2–J6)
+            </span>
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #EFF6FF; color: #1E40AF; padding: 2px 6px; border-radius: 4px;">
+              5× 4–20 mA SHIELDED
+            </span>
+          </div>
+          <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 4px;">
+            5 Shielded 2-Core Cables via PG7 Waterproof Glands
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; font-size: 10px; color: #334155;">
+            <div>• <strong style="color: #0284C7;">J2:</strong> PT-101 Drum Siphon (0–25 bar)</div>
+            <div>• <strong style="color: #0284C7;">J3:</strong> TT-101 Steam Outlet (0–400°C)</div>
+            <div>• <strong style="color: #0284C7;">J4:</strong> TT-102 Stack Flue Gas (0–400°C)</div>
+            <div>• <strong style="color: #0284C7;">J5:</strong> FT-101 Feedwater Pipe (0–5k kg/h)</div>
+            <div style="grid-column: span 2;">• <strong style="color: #7C3AED;">J6:</strong> AT-101 Blowdown TDS &amp; Level (0–5000 ppm)</div>
+          </div>
+        </div>
+        <div class="font-mono" style="font-size: 10px; color: #64748B;">
+          Terminals: <span style="color:#0284C7; font-weight:700;">Pin 1: +Loop</span> • <span style="font-weight:700;">Pin 2: GND</span> ➔ 150Ω Susumu + ADS1115
+        </div>
+      </div>
+
+      <!-- Card 3: Uplink Hop (ESP32-S3 -> Mini 4G Router -> Cloud) -->
+      <div class="studio-frame" style="padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid #059669;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span class="font-mono" style="font-size: 11px; font-weight: 700; color: #059669; text-transform: uppercase;">
+              UPLINK HOP (4G ROUTER)
+            </span>
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #ECFDF5; color: #065F46; padding: 2px 6px; border-radius: 4px;">
+              mTLS + ECDSA P-256
+            </span>
+          </div>
+          <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 4px;">
+            ESP32-S3 ➔ Mini Industrial 4G Router ➔ Cloud
+          </div>
+          <p style="font-size: 11px; color: #475569; line-height: 1.4;">
+            ESP32-S3 Wi-Fi connects to a dedicated <strong>Industrial 4G LTE SIM Router</strong> mounted beside the IP65 box (isolated from plant IT), streaming to <strong>MSME Plant Portal</strong> &amp; <strong>State/Central Govt e-Register</strong>.
+          </p>
+        </div>
+        <div class="font-mono" style="font-size: 10px; color: #0284C7; font-weight: 700;">
+          1 Hz ECDSA signature sync • SHA-256 tamper-proof ledger
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="slide-footer footer-light">
+      <div>TapasShield IIoT  •  National Startup Awards 6.0 (Visual Connectivity Guide)</div>
+      <div>12 / 15</div>
+    </div>
+  </section>
+<section class="slide theme-studio" id="slide-13">
+    <div class="slide-header">
+      <div>
+        <div class="kicker-pill pill-studio">
+          <span style="color:#0284C7;">●</span> VISUAL GUIDE 03 • MSME FACTORY INTERFACE
+        </div>
+        <h2 class="slide-title-light font-heading" style="color: #0F172A; font-size: 34px;">
+          Full-Screen Tour: Business Plant SCADA &amp; Predictive ROI Portal
+        </h2>
+      </div>
+      <div class="rubric-tag" style="background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD;">
+        BUSINESS VIEW
+      </div>
+    </div>
+
+    <!-- Center Hero Browser Frame (76% height, full width) -->
+    <div class="studio-frame" style="height: 575px; display: flex; flex-direction: column; overflow: hidden; margin-bottom: 12px; position: relative;">
+      <!-- Browser Top Chrome -->
+      <div style="background: #0F172A; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; z-index: 5;">
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <div style="width: 10px; height: 10px; border-radius: 50%; background: #EF4444;"></div>
+          <div style="width: 10px; height: 10px; border-radius: 50%; background: #F59E0B;"></div>
+          <div style="width: 10px; height: 10px; border-radius: 50%; background: #10B981;"></div>
+          <span class="font-mono" style="font-size: 11px; color: #94A3B8; margin-left: 10px;">https://app.tapasshield.in/plant-scada</span>
+        </div>
+        <div style="display: flex; items-center; gap: 8px;">
+          <span class="font-mono" style="font-size: 10px; background: rgba(14,165,233,0.2); color: #38BDF8; padding: 2px 8px; border-radius: 4px; font-weight: 700;">
+            MSME FACTORY COCKPIT • NODE: IBR-TN-VEL-2026-0891
+          </span>
+        </div>
+      </div>
+
+      <!-- Screenshot with Relative Pins -->
+      <div style="position: relative; flex: 1; overflow: hidden; background: #070D1A; display: flex; align-items: center; justify-content: center;">
+        <img src="visual_assets/portal_full_business.jpg" alt="Business Plant SCADA Portal" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+
+        <!-- Pin 1: Live Scenario & Role Bar (top) -->
+        <div style="position: absolute; top: 10%; left: 20%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #0284C7;">1</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #38BDF8; padding: 3px 8px; border-radius: 6px; border: 1px solid #0284C7; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            1. Live Scenario &amp; Role Bar
+          </span>
+        </div>
+
+        <!-- Pin 2: Animated SVG Boiler Twin (center) -->
+        <div style="position: absolute; top: 32%; left: 45%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #0284C7;">2</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #38BDF8; padding: 3px 8px; border-radius: 6px; border: 1px solid #0284C7; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            2. Animated SVG Boiler Twin
+          </span>
+        </div>
+
+        <!-- Pin 3: IS 8753 Efficiency & Fuel Waste (bottom left) -->
+        <div style="position: absolute; bottom: 18%; left: 16%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #0284C7;">3</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #F59E0B; padding: 3px 8px; border-radius: 6px; border: 1px solid #F59E0B; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            3. IS 8753 Efficiency &amp; ₹/hr Loss
+          </span>
+        </div>
+
+        <!-- Pin 4: Loop Current Monitor (bottom right) -->
+        <div style="position: absolute; bottom: 18%; right: 16%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #0284C7;">4</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #10B981; padding: 3px 8px; border-radius: 6px; border: 1px solid #10B981; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            4. 4–20 mA Loop Inspector
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom 4-Column Micro Legend (11% height) -->
+    <div class="studio-frame" style="height: 85px; padding: 10px 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #0284C7; width: 22px; height: 22px; font-size: 10.5px;">1</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #0284C7;">Fault Bar:</strong> Inject 5 live plant fault scenarios.</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #0284C7; width: 22px; height: 22px; font-size: 10.5px;">2</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #0284C7;">Digital Twin:</strong> Live IAPWS steam &amp; scale drift physics.</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #0284C7; width: 22px; height: 22px; font-size: 10.5px;">3</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #D97706;">Fuel Penalty:</strong> Real-time ₹/hr coal loss &amp; descaling RUL.</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #0284C7; width: 22px; height: 22px; font-size: 10.5px;">4</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #059669;">Loop Health:</strong> 4–20 mA current &amp; 16-bit ADC monitoring.</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="slide-footer footer-light">
+      <div>TapasShield IIoT  •  National Startup Awards 6.0 (Visual Portal Guide)</div>
+      <div>13 / 15</div>
+    </div>
+  </section>
+<section class="slide theme-studio" id="slide-14">
+    <div class="slide-header">
+      <div>
+        <div class="kicker-pill pill-studio">
+          <span style="color:#059669;">●</span> VISUAL GUIDE 04 • GOVERNMENT E-REGISTER INTERFACE
+        </div>
+        <h2 class="slide-title-light font-heading" style="color: #0F172A; font-size: 34px;">
+          Full-Screen Tour: State Inspectorate &amp; Central Govt (DPIIT) e-Register
+        </h2>
+      </div>
+      <div class="rubric-tag" style="background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;">
+        INSPECTOR VIEW
+      </div>
+    </div>
+
+    <!-- Center Hero Browser Frame (76% height, full width) -->
+    <div class="studio-frame" style="height: 575px; display: flex; flex-direction: column; overflow: hidden; margin-bottom: 12px; position: relative;">
+      <!-- Browser Top Chrome -->
+      <div style="background: #0F172A; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; z-index: 5;">
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <div style="width: 10px; height: 10px; border-radius: 50%; background: #EF4444;"></div>
+          <div style="width: 10px; height: 10px; border-radius: 50%; background: #F59E0B;"></div>
+          <div style="width: 10px; height: 10px; border-radius: 50%; background: #10B981;"></div>
+          <span class="font-mono" style="font-size: 11px; color: #94A3B8; margin-left: 10px;">https://app.tapasshield.in/govt-register</span>
+        </div>
+        <div style="display: flex; items-center; gap: 8px;">
+          <span class="font-mono" style="font-size: 10px; background: rgba(16,185,129,0.2); color: #34D399; padding: 2px 8px; border-radius: 4px; font-weight: 700;">
+            STATUTORY INSPECTOR COCKPIT • CENTRAL BOILERS BOARD
+          </span>
+        </div>
+      </div>
+
+      <!-- Screenshot with Relative Pins -->
+      <div style="position: relative; flex: 1; overflow: hidden; background: #070D1A; display: flex; align-items: center; justify-content: center;">
+        <img src="visual_assets/portal_full_inspector.jpg" alt="Govt Inspector Portal" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+
+        <!-- Pin 5: Forensic Audit & Form-VI Cert (top right toolbar) -->
+        <div style="position: absolute; top: 6%; right: 4%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #059669;">5</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #34D399; padding: 3px 8px; border-radius: 6px; border: 1px solid #059669; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            5. Forensic Audit &amp; Form-VI Cert
+          </span>
+        </div>
+
+        <!-- Pin 6: Broken SHA-256 Hash Alert (crimson alert banner) -->
+        <div style="position: absolute; top: 18%; left: 32%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #E11D48;">6</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #FB7185; padding: 3px 8px; border-radius: 6px; border: 1px solid #E11D48; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            6. Broken SHA-256 Hash Alert
+          </span>
+        </div>
+
+        <!-- Pin 7: ATECC608B Hardware Trust (regulatory metadata cards) -->
+        <div style="position: absolute; top: 31%; left: 35%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #059669;">7</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #34D399; padding: 3px 8px; border-radius: 6px; border: 1px solid #059669; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            7. ATECC608B Hardware Trust
+          </span>
+        </div>
+
+        <!-- Pin 8: DPIIT Multi-State National Grid (cluster table) -->
+        <div style="position: absolute; bottom: 22%; left: 35%; display: flex; align-items: center; gap: 6px; z-index: 10;">
+          <div class="pin-badge" style="background: #0891B2;">8</div>
+          <span class="font-mono" style="font-size: 10px; font-weight: 700; background: rgba(15,23,42,0.94); color: #22D3EE; padding: 3px 8px; border-radius: 6px; border: 1px solid #0891B2; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            8. DPIIT Multi-State National Grid
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom 4-Column Micro Legend (11% height) -->
+    <div class="studio-frame" style="height: 85px; padding: 10px 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #059669; width: 22px; height: 22px; font-size: 10.5px;">5</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #059669;">Audit Toolbar:</strong> Verify ledger &amp; issue digital Form-VI.</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #E11D48; width: 22px; height: 22px; font-size: 10.5px;">6</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #E11D48;">Tamper Alert:</strong> Detects modified records via SHA-256 break.</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #059669; width: 22px; height: 22px; font-size: 10.5px;">7</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #059669;">Silicon Trust:</strong> ATECC608B ECDSA locks statutory hold.</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="pin-badge" style="background: #0891B2; width: 22px; height: 22px; font-size: 10.5px;">8</div>
+        <div style="font-size: 11px; color: #334155; line-height: 1.3;"><strong style="color: #0891B2;">National Grid:</strong> Multi-state compliance grid for TN, GJ, MH, PB.</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="slide-footer footer-light">
+      <div>TapasShield IIoT  •  National Startup Awards 6.0 (Visual Portal Guide)</div>
+      <div>14 / 15</div>
+    </div>
+  </section>
+<section class="slide theme-studio" id="slide-15">
+    <div class="slide-header">
+      <div>
+        <div class="kicker-pill pill-studio">
+          <span style="color:#7C3AED;">●</span> VISUAL GUIDE 05 • QUICK-START &amp; OPEN VERIFICATION PACKAGE
+        </div>
+        <h2 class="slide-title-light font-heading" style="color: #0F172A; font-size: 34px;">
+          4-Step Visual Quick-Start + Full Code &amp; KiCad 3D Hardware Files
+        </h2>
+      </div>
+      <div class="rubric-tag" style="background: #EDE9FE; color: #5B21B6; border: 1px solid #DDD6FE;">
+        QUICK-START
+      </div>
+    </div>
+
+    <!-- Top 63%: 2x2 Large Visual Storyboard (Zero Letterboxing!) -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; height: 470px; margin-bottom: 12px;">
+      
+      <!-- Card 1: Power J1 & 5 Sensor Loops J2-J6 -->
+      <div class="studio-frame" style="padding: 10px 14px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #F8FAFC; border-radius: 8px; overflow: hidden; border: 1px solid #E2E8F0; margin-bottom: 8px;">
+          <img src="visual_assets/pcb_macro_terminals.png" alt="Terminals J1-J6" style="max-height: 140px; max-width: 100%; object-fit: contain;">
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px;">
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #EFF6FF; color: #1E40AF; padding: 2px 7px; border-radius: 4px;">
+              STEP 01
+            </span>
+            <span style="font-size: 12.5px; font-weight: 700; color: #0F172A;">Power (J1) &amp; 5 Sensor Loops (J2–J6)</span>
+          </div>
+          <p style="font-size: 11.5px; color: #475569; line-height: 1.35;">
+            Wire 24V DC to J1 and tap 5 existing 4–20 mA loops via PG7 glands without shutting down boiler.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Pair 4G Router & Green LED1 -->
+      <div class="studio-frame" style="padding: 10px 14px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #F8FAFC; border-radius: 8px; overflow: hidden; border: 1px solid #E2E8F0; margin-bottom: 8px;">
+          <img src="visual_assets/pcb_macro_leds.png" alt="LEDs and Router Pair" style="max-height: 140px; max-width: 100%; object-fit: contain;">
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px;">
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #ECFDF5; color: #065F46; padding: 2px 7px; border-radius: 4px;">
+              STEP 02
+            </span>
+            <span style="font-size: 12.5px; font-weight: 700; color: #0F172A;">Pair 4G Router &amp; Verify Green LED1</span>
+          </div>
+          <p style="font-size: 11.5px; color: #475569; line-height: 1.35;">
+            Link ESP32-S3 to dedicated 4G SIM router; solid green LED1 confirms encrypted mTLS sync.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Switch Roles & Test Live Faults (Tight Non-Letterboxed Controls) -->
+      <div class="studio-frame" style="padding: 10px 14px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #070D1A; border-radius: 8px; overflow: hidden; border: 1px solid #1E293B; margin-bottom: 8px;">
+          <img src="visual_assets/portal_zoom_controls.jpg" alt="Controls Zoom" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px;">
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #EFF6FF; color: #1E40AF; padding: 2px 7px; border-radius: 4px;">
+              STEP 03
+            </span>
+            <span style="font-size: 12.5px; font-weight: 700; color: #0F172A;">Switch Roles &amp; Test Live Faults</span>
+          </div>
+          <p style="font-size: 11.5px; color: #475569; line-height: 1.35;">
+            Toggle Business/Govt views or click buttons 1–5 to inject live faults and track alerts.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4: Audit Hash Chain & Issue Form-VI Cert (Tight Non-Letterboxed Audit) -->
+      <div class="studio-frame" style="padding: 10px 14px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #070D1A; border-radius: 8px; overflow: hidden; border: 1px solid #1E293B; margin-bottom: 8px;">
+          <img src="visual_assets/portal_zoom_audit_cert.jpg" alt="Audit Cert Zoom" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px;">
+            <span class="font-mono" style="font-size: 10px; font-weight: 700; background: #EDE9FE; color: #5B21B6; padding: 2px 7px; border-radius: 4px;">
+              STEP 04
+            </span>
+            <span style="font-size: 12.5px; font-weight: 700; color: #0F172A;">Audit Hash Chain &amp; Issue Form-VI Cert</span>
+          </div>
+          <p style="font-size: 11.5px; color: #475569; line-height: 1.35;">
+            Run SHA-256 forensic audit and issue automated digital renewals with instant QR validation.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom 22%: Sleek Open-Verification Repository Card with Real QR Code -->
+    <div class="studio-frame" style="height: 190px; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; border: 1.5px solid #10B981; background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF4 100%);">
+      <!-- Left Info Block (78%) -->
+      <div style="flex: 1; padding-right: 20px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="font-mono" style="font-size: 10.5px; font-weight: 800; color: #059669; text-transform: uppercase; letter-spacing: 0.5px;">
+            OPEN SOURCE CODE • ESP32-S3 FIRMWARE • KICAD 8 3D PCB FILES
+          </span>
+          <span style="background: #DCFCE7; color: #166534; font-size: 9.5px; font-weight: 700; padding: 1px 6px; border-radius: 4px;">
+            100% REPRODUCIBLE
+          </span>
+        </div>
+        
+        <h3 style="font-size: 18px; font-weight: 800; color: #0F172A; margin-bottom: 8px;">
+          Inspect, Run &amp; Verify Everything on GitHub
+        </h3>
+
+        <!-- 3 Clean Chips -->
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+          <span class="font-mono" style="font-size: 10.5px; background: #FFFFFF; border: 1px solid #CBD5E1; color: #334155; padding: 3px 8px; border-radius: 6px; font-weight: 600;">
+            1. FastAPI + React Dual Portal &amp; Pytest Suite
+          </span>
+          <span class="font-mono" style="font-size: 10.5px; background: #FFFFFF; border: 1px solid #CBD5E1; color: #334155; padding: 3px 8px; border-radius: 6px; font-weight: 600;">
+            2. PlatformIO ESP32-S3 mbedTLS Firmware
+          </span>
+          <span class="font-mono" style="font-size: 10.5px; background: #FFFFFF; border: 1px solid #CBD5E1; color: #334155; padding: 3px 8px; border-radius: 6px; font-weight: 600;">
+            3. KiCad 8 PCB (.kicad_pcb) + 3D VRML Models + DRC Report
+          </span>
+        </div>
+
+        <!-- Monospace Clickable Link Pill -->
+        <div>
+          <a href="https://github.com/Rancheology/TapasShield_NSA6" target="_blank" class="font-mono" style="font-size: 12px; font-weight: 700; color: #0284C7; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; background: #EFF6FF; border: 1px solid #BFDBFE; padding: 4px 10px; border-radius: 6px;">
+            https://github.com/Rancheology/TapasShield_NSA6 <span style="font-size: 13px;">➔</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right QR Block (18%) -->
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;">
+        <div style="background: #FFFFFF; padding: 6px; border: 1px solid #CBD5E1; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+          <img src="visual_assets/qr-code_github.png" alt="Scan for GitHub Repo &amp; 3D CAD" style="width: 108px; height: 108px; display: block; border-radius: 6px;">
+        </div>
+        <div class="font-mono" style="font-size: 9.5px; font-weight: 700; color: #475569; text-align: center; margin-top: 5px;">
+          Scan for Repo &amp; 3D CAD
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="slide-footer footer-light">
+      <div>TapasShield IIoT  •  National Startup Awards 6.0 (Open Verification Package)</div>
+      <div>15 / 15</div>
+    </div>
+  </section>
+  </div>
+</body>
+</html>

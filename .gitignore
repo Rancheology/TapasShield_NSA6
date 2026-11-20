@@ -1,7 +1,4 @@
-﻿# Exclude presentation builder scripts, raw assets & exports
-presentation/
-
-# Python & Conda
+﻿# Python & Conda
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -9,11 +6,17 @@ __pycache__/
 venv/
 *.egg-info/
 
-# Frontend dependencies & build outputs
+# Presentation temporary renders & bulk scratch caches
+# (Keep scripts, HTML templates, visual guides & final deck deliverables tracked)
+presentation/audit_slides/
+presentation/screenshots/
+presentation/slides_pptx_images/
+presentation/__pycache__/
+presentation/*.tmp
+
+# Frontend dependencies & local build outputs
 frontend/node_modules/
 frontend/dist/
-frontend/public/deck/*.pptx
-frontend/public/deck/*.pdf
 
 # PlatformIO build cache
 firmware/.pio/

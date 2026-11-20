@@ -130,19 +130,27 @@ const SLIDES: SlideData[] = [
   },
   {
     id: 13,
-    kicker: "VISUAL GUIDE 03 • PORTAL MECHANICS",
-    title: "Visual Tour: Inside the Business & Government Online Register",
-    rubric: "DUAL PORTALS",
+    kicker: "VISUAL GUIDE 03 • MSME FACTORY INTERFACE",
+    title: "Full-Screen Tour: Business Plant SCADA & Predictive ROI Portal",
+    rubric: "BUSINESS VIEW",
     rubricColor: "text-sky-400 border-sky-500/40 bg-sky-500/10",
-    category: "Portal Mechanics"
+    category: "Business Portal"
   },
   {
     id: 14,
-    kicker: "VISUAL GUIDE 04 • VISUAL QUICK-START MANUAL",
-    title: "6-Step Visual User Guide: Install Hardware & Operate the Portal",
+    kicker: "VISUAL GUIDE 04 • GOVERNMENT E-REGISTER INTERFACE",
+    title: "Full-Screen Tour: State Inspectorate & Central Govt (DPIIT) e-Register",
+    rubric: "INSPECTOR VIEW",
+    rubricColor: "text-emerald-400 border-emerald-500/40 bg-emerald-500/10",
+    category: "Govt e-Register"
+  },
+  {
+    id: 15,
+    kicker: "VISUAL GUIDE 05 • QUICK-START & OPEN VERIFICATION PACKAGE",
+    title: "4-Step Visual Quick-Start + Full Code & KiCad 3D Hardware Files",
     rubric: "QUICK-START",
     rubricColor: "text-purple-400 border-purple-500/40 bg-purple-500/10",
-    category: "Quick-Start Manual"
+    category: "Quick-Start & GitHub"
   }
 ];
 
@@ -158,10 +166,10 @@ export const PitchDeckView: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault();
-        setCurrentSlide(prev => (prev < 14 ? prev + 1 : 1));
+        setCurrentSlide(prev => (prev < 15 ? prev + 1 : 1));
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
-        setCurrentSlide(prev => (prev > 1 ? prev - 1 : 14));
+        setCurrentSlide(prev => (prev > 1 ? prev - 1 : 15));
       } else if (e.key === 'Home') {
         e.preventDefault();
         setCurrentSlide(1);
@@ -179,7 +187,7 @@ export const PitchDeckView: React.FC = () => {
     let timer: any;
     if (isPlaying) {
       timer = setInterval(() => {
-        setCurrentSlide(prev => (prev < 14 ? prev + 1 : 1));
+        setCurrentSlide(prev => (prev < 15 ? prev + 1 : 1));
       }, 8000);
     }
     return () => clearInterval(timer);
@@ -320,17 +328,17 @@ export const PitchDeckView: React.FC = () => {
             {/* Quick Floating Navigation Bar */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 px-4 py-2 bg-[#090E17]/90 backdrop-blur-md border border-gray-700/80 rounded-full shadow-2xl z-20">
               <button
-                onClick={() => setCurrentSlide(prev => (prev > 1 ? prev - 1 : 14))}
+                onClick={() => setCurrentSlide(prev => (prev > 1 ? prev - 1 : 15))}
                 className="p-1.5 rounded-full hover:bg-gray-800 text-gray-300 hover:text-white transition-all"
                 title="Previous Slide"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <span className="font-mono text-xs font-bold text-emerald-400">
-                SLIDE {String(currentSlide).padStart(2, '0')} / 14
+                SLIDE {String(currentSlide).padStart(2, '0')} / 15
               </span>
               <button
-                onClick={() => setCurrentSlide(prev => (prev < 14 ? prev + 1 : 1))}
+                onClick={() => setCurrentSlide(prev => (prev < 15 ? prev + 1 : 1))}
                 className="p-1.5 rounded-full hover:bg-gray-800 text-gray-300 hover:text-white transition-all"
                 title="Next Slide"
               >
@@ -372,6 +380,7 @@ export const PitchDeckView: React.FC = () => {
               {currentSlide === 12 && <Slide12View />}
               {currentSlide === 13 && <Slide13View />}
               {currentSlide === 14 && <Slide14View />}
+              {currentSlide === 15 && <Slide15View />}
             </div>
 
             {/* Bottom Footer Section */}
@@ -386,18 +395,18 @@ export const PitchDeckView: React.FC = () => {
 
               <div className="flex items-center gap-3">
                 <span className="font-mono text-emerald-400 font-bold">
-                  SLIDE {String(currentSlide).padStart(2, '0')} / 14
+                  SLIDE {String(currentSlide).padStart(2, '0')} / 15
                 </span>
                 <div className="flex items-center gap-1">
                   <button
-                    onClick={() => setCurrentSlide(prev => (prev > 1 ? prev - 1 : 14))}
+                    onClick={() => setCurrentSlide(prev => (prev > 1 ? prev - 1 : 15))}
                     className="p-1 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition-all"
                     title="Previous Slide"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
-                    onClick={() => setCurrentSlide(prev => (prev < 14 ? prev + 1 : 1))}
+                    onClick={() => setCurrentSlide(prev => (prev < 15 ? prev + 1 : 1))}
                     className="p-1 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition-all"
                     title="Next Slide"
                   >
@@ -411,7 +420,7 @@ export const PitchDeckView: React.FC = () => {
       </div>
 
       {/* 3. Thumbnail Navigator Strip (14 Slides) */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 xl:grid-cols-14 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 xl:grid-cols-15 gap-2">
         {SLIDES.map(s => {
           const isActive = s.id === currentSlide;
           return (
@@ -994,53 +1003,100 @@ const Slide12View = () => (
   </div>
 );
 
-// Slide 13: Portal Mechanics
+// Slide 13: Dedicated Full-Screen Business MSME Plant SCADA
 const Slide13View = () => (
   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-full items-center">
-    <div className="md:col-span-7 flex flex-col justify-between h-full space-y-2">
-      <div className="flex-1 flex items-center justify-center p-2 rounded-xl bg-[#FAF9F6] border border-gray-300 overflow-hidden relative">
+    <div className="md:col-span-8 flex flex-col justify-between h-full space-y-2">
+      <div className="flex-1 flex items-center justify-center p-1 rounded-xl bg-[#070D1A] border border-gray-700 overflow-hidden relative">
         <img 
-          src="/deck/guide_03_portal_mechanics.png" 
-          alt="Visual Tour Inside Dual Online Register" 
+          src="/deck/slide_13.png" 
+          alt="Business Plant SCADA Portal" 
           className="w-full h-full object-contain"
         />
       </div>
     </div>
-    <div className="md:col-span-5 h-full p-4 rounded-xl bg-[#131D31] border border-sky-500/40 flex flex-col justify-between text-[11px]">
+    <div className="md:col-span-4 h-full p-4 rounded-xl bg-[#131D31] border border-sky-500/40 flex flex-col justify-between text-[11px]">
       <div>
         <h3 className="text-xs font-bold text-sky-400 uppercase tracking-wide border-b border-gray-700 pb-1 mb-2">
-          Dual Online Register Architecture:
+          Business Plant Cockpit:
         </h3>
         <div className="space-y-2">
           <div className="p-2 rounded bg-black/30 border border-gray-800">
-            <div className="font-bold text-sky-400 text-xs">Left: Factory Cockpit (Business View)</div>
-            <p className="text-gray-300 text-[10px] mt-0.5">
-              Live thermodynamic digital twin, 5 interactive fault injection scenarios, real-time ₹/hr fuel burn rate, and 14-day advance descaling alerts.
-            </p>
+            <span className="font-bold text-sky-400">1. Fault Simulator Bar:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">Inject 5 real-world plant faults (Scale drift, Low Water, Tamper) directly for live jury audit.</p>
           </div>
           <div className="p-2 rounded bg-black/30 border border-gray-800">
-            <div className="font-bold text-emerald-400 text-xs">Right: Statutory Portal (Inspector View)</div>
-            <p className="text-gray-300 text-[10px] mt-0.5">
-              ATECC608B ECDSA signature shield, one-click SHA-256 tamper audit, instant digital IBR Form-VI certificate issuance, and multi-state cluster grid.
-            </p>
+            <span className="font-bold text-sky-400">2. Physics Digital Twin:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">Animated SVG P&ID displaying live IAPWS-IF97 steam saturation physics & growing CaCO3 scale.</p>
+          </div>
+          <div className="p-2 rounded bg-black/30 border border-gray-800">
+            <span className="font-bold text-amber-400">3. ₹/hr Fuel Waste Loss:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">Real-time coal cost penalty & 14-day advance predictive descaling countdown.</p>
+          </div>
+          <div className="p-2 rounded bg-black/30 border border-gray-800">
+            <span className="font-bold text-emerald-400">4. 4–20 mA Loop Monitor:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">Continuous current & 16-bit ADC count tracking catches sensor drift before failure.</p>
           </div>
         </div>
       </div>
-      <div className="p-2.5 rounded bg-blue-950/40 border border-blue-500/40 text-[10px] text-sky-300">
-        Fulfills India EODB Grand Challenge: Shared online register accessible both by business and State/Central Government.
+      <div className="p-2 rounded bg-sky-950/40 border border-sky-500/40 text-[10px] text-sky-300">
+        Empowers MSME factory attendants with actionable financial & safety insights.
       </div>
     </div>
   </div>
 );
 
-// Slide 14: 6-Step Visual Quick-Start Storyboard
+// Slide 14: Dedicated Full-Screen State & Central Govt Inspector Portal
 const Slide14View = () => (
   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-full items-center">
-    <div className="md:col-span-7 flex flex-col justify-between h-full space-y-2">
-      <div className="flex-1 flex items-center justify-center p-2 rounded-xl bg-[#FAF9F6] border border-gray-300 overflow-hidden relative">
+    <div className="md:col-span-8 flex flex-col justify-between h-full space-y-2">
+      <div className="flex-1 flex items-center justify-center p-1 rounded-xl bg-[#070D1A] border border-gray-700 overflow-hidden relative">
         <img 
-          src="/deck/guide_04_quickstart_storyboard.png" 
-          alt="6-Step Visual User Guide" 
+          src="/deck/slide_14.png" 
+          alt="Govt Inspector Portal" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+    </div>
+    <div className="md:col-span-4 h-full p-4 rounded-xl bg-[#131D31] border border-emerald-500/40 flex flex-col justify-between text-[11px]">
+      <div>
+        <h3 className="text-xs font-bold text-emerald-400 uppercase tracking-wide border-b border-gray-700 pb-1 mb-2">
+          State & Central Govt e-Register:
+        </h3>
+        <div className="space-y-2">
+          <div className="p-2 rounded bg-black/30 border border-gray-800">
+            <span className="font-bold text-emerald-400">5. Forensic Audit Toolbar:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">One-click SHA-256 ledger integrity audit & instant digital IBR Form-VI certificate verification.</p>
+          </div>
+          <div className="p-2 rounded bg-black/30 border border-gray-800">
+            <span className="font-bold text-rose-400">6. Broken Hash Alert:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">Instant tamper alert flags modified historical records with crimson Stored vs Recomputed hash breakdown.</p>
+          </div>
+          <div className="p-2 rounded bg-black/30 border border-gray-800">
+            <span className="font-bold text-emerald-400">7. ATECC608B Hardware Trust:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">Silicon private key signs telemetry; tamper triggers instant regulatory hold.</p>
+          </div>
+          <div className="p-2 rounded bg-black/30 border border-gray-800">
+            <span className="font-bold text-cyan-400">8. National Cluster Grid:</span>
+            <p className="text-gray-300 text-[10px] mt-0.5">DPIIT national grid tracks live compliance across Tamil Nadu, Gujarat, Maharashtra, Punjab clusters.</p>
+          </div>
+        </div>
+      </div>
+      <div className="p-2 rounded bg-emerald-950/40 border border-emerald-500/40 text-[10px] text-emerald-300">
+        Fulfills India EODB Grand Challenge: Shared online register eliminating manual inspection queues.
+      </div>
+    </div>
+  </div>
+);
+
+// Slide 15: 4-Step Quick-Start + GitHub Repo & QR Code
+const Slide15View = () => (
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-full items-center">
+    <div className="md:col-span-7 flex flex-col justify-between h-full space-y-2">
+      <div className="flex-1 flex items-center justify-center p-1 rounded-xl bg-[#FAF9F6] border border-gray-300 overflow-hidden relative">
+        <img 
+          src="/deck/slide_15.png" 
+          alt="4-Step Quick-Start + GitHub Repo" 
           className="w-full h-full object-contain"
         />
       </div>
@@ -1048,37 +1104,45 @@ const Slide14View = () => (
     <div className="md:col-span-5 h-full p-4 rounded-xl bg-[#131D31] border border-purple-500/40 flex flex-col justify-between text-[11px]">
       <div>
         <h3 className="text-xs font-bold text-purple-400 uppercase tracking-wide border-b border-gray-700 pb-1 mb-2">
-          6-Step Operational Storyboard:
+          4-Step Quick-Start & Open Repository:
         </h3>
         <div className="grid grid-cols-1 gap-1.5 text-gray-200 text-[10.5px]">
           <div className="flex items-center gap-2 p-1.5 rounded bg-black/30 border border-gray-800">
             <span className="font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold text-[9px]">STEP 01</span>
-            <span><strong>Power J1:</strong> 24V DC DIN-Rail SMPS to J1 (+24V Red / GND Black).</span>
+            <span><strong>Power & Loops:</strong> Wire 24V DC to J1; tap 5 loops via PG7 glands.</span>
           </div>
           <div className="flex items-center gap-2 p-1.5 rounded bg-black/30 border border-gray-800">
-            <span className="font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold text-[9px]">STEP 02</span>
-            <span><strong>Clip Loops (J2–J6):</strong> Tap 5 sensor lines through PG7 glands.</span>
+            <span className="font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold text-[9px]">STEP 02</span>
+            <span><strong>Pair 4G:</strong> Connect industrial 4G SIM router; LED1 green confirms mTLS.</span>
           </div>
           <div className="flex items-center gap-2 p-1.5 rounded bg-black/30 border border-gray-800">
-            <span className="font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold text-[9px]">STEP 03</span>
-            <span><strong>Pair 4G &amp; Sync:</strong> Connect 4G router; green LED1 confirms mTLS.</span>
+            <span className="font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold text-[9px]">STEP 03</span>
+            <span><strong>Test Scenarios:</strong> Switch Business/Govt views or click buttons 1–5.</span>
           </div>
           <div className="flex items-center gap-2 p-1.5 rounded bg-black/30 border border-gray-800">
-            <span className="font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 font-bold text-[9px]">STEP 04</span>
-            <span><strong>Role Switch:</strong> Toggle Business &amp; Govt views or test faults.</span>
-          </div>
-          <div className="flex items-center gap-2 p-1.5 rounded bg-black/30 border border-gray-800">
-            <span className="font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-bold text-[9px]">STEP 05</span>
-            <span><strong>Track Scale ROI:</strong> Monitor ₹/hr coal bleed &amp; descaling countdown.</span>
-          </div>
-          <div className="flex items-center gap-2 p-1.5 rounded bg-black/30 border border-gray-800">
-            <span className="font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold text-[9px]">STEP 06</span>
-            <span><strong>Audit &amp; Cert:</strong> Verify SHA-256 chain &amp; issue digital Form-VI.</span>
+            <span className="font-mono px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400 font-bold text-[9px]">STEP 04</span>
+            <span><strong>Audit & Cert:</strong> Run SHA-256 forensic audit & issue Form-VI certs.</span>
           </div>
         </div>
       </div>
-      <div className="p-2 rounded bg-purple-950/40 border border-purple-500/40 text-[10px] text-purple-300">
-        Non-intrusive retrofit completed in &lt; 45 minutes by any plant technician.
+
+      {/* GitHub Repo Card */}
+      <div className="p-2.5 rounded-xl bg-[#090E17] border border-emerald-500/50 space-y-1.5">
+        <div className="text-[10px] font-mono font-bold text-emerald-400 uppercase">
+          100% REPRODUCIBLE OPEN SOURCE CODE
+        </div>
+        <p className="text-[10px] text-gray-300">
+          FastAPI + React portal, PlatformIO ESP32-S3 firmware, KiCad 8 PCB & 3D models.
+        </p>
+        <a 
+          href="https://github.com/Rancheology/TapasShield_NSA6" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="font-mono text-[10.5px] font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1.5"
+        >
+          <span>https://github.com/Rancheology/TapasShield_NSA6</span>
+          <span>➔</span>
+        </a>
       </div>
     </div>
   </div>
