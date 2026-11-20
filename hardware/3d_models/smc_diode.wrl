@@ -1,0 +1,50 @@
+#VRML V2.0 utf8
+# DO-214AB (SMC) Power Diode Package
+Transform {
+  children [
+    Transform {
+      translation 0 0 1.25
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.14 0.14 0.16 specularColor 0.2 0.2 0.2 shininess 0.2 }
+          }
+          geometry Box { size 3.6 6.8 2.3 }
+        }
+      ]
+    }
+    Transform {
+      translation 0 -2.0 2.42
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.85 0.85 0.88 specularColor 0.9 0.9 0.9 shininess 0.9 }
+          }
+          geometry Box { size 3.6 0.7 0.05 }
+        }
+      ]
+    }
+    Transform {
+      translation 0 -3.4 0.45
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.85 0.85 0.88 specularColor 0.9 0.9 0.9 shininess 0.9 }
+          }
+          geometry Box { size 2.2 1.0 0.5 }
+        }
+      ]
+    }
+    Transform {
+      translation 0 3.4 0.45
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.85 0.85 0.88 specularColor 0.9 0.9 0.9 shininess 0.9 }
+          }
+          geometry Box { size 2.2 1.0 0.5 }
+        }
+      ]
+    }
+  ]
+}

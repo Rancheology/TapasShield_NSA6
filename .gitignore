@@ -1,0 +1,31 @@
+﻿# Exclude presentation builder scripts, raw assets & exports
+presentation/
+
+# Python & Conda
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Frontend dependencies & build outputs
+frontend/node_modules/
+frontend/dist/
+frontend/public/deck/*.pptx
+frontend/public/deck/*.pdf
+
+# PlatformIO build cache
+firmware/.pio/
+firmware/.vscode/
+
+# KiCad backups & temporary lock files
+hardware/*-backups/
+hardware/*.lck
+hardware/*.kicad_pcb-bak
+
+# OS / IDE junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

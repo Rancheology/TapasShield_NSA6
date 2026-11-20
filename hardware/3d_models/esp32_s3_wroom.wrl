@@ -1,0 +1,84 @@
+#VRML V2.0 utf8
+# ESP32-S3-WROOM-1 Module with Metallic RF Shield & PCB Antenna
+Transform {
+  children [
+    # Substrate PCB (Dark Green)
+    Transform {
+      translation 0 0 0.4
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.05 0.28 0.12
+              specularColor 0.15 0.2 0.15
+              shininess 0.2
+            }
+          }
+          geometry Box { size 18.0 25.5 0.8 }
+        }
+      ]
+    }
+    # Brushed Silver Metallic RF Shield Can
+    Transform {
+      translation 0 2.8 2.0
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.82 0.84 0.86
+              specularColor 0.95 0.95 0.98
+              shininess 0.85
+            }
+          }
+          geometry Box { size 16.0 17.5 2.4 }
+        }
+      ]
+    }
+    # ESP32-S3 Die / Laser Marking
+    Transform {
+      translation 0 2.8 3.22
+      children [
+        Shape {
+          appearance Appearance { material Material { diffuseColor 0.3 0.3 0.32 } }
+          geometry Box { size 5.0 5.0 0.05 }
+        }
+      ]
+    }
+    # PCB Inverted-F Antenna Traces (Copper Gold on Top End)
+    Transform {
+      translation 0 -9.5 0.83
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.85 0.65 0.15
+              specularColor 0.9 0.8 0.3
+              shininess 0.75
+            }
+          }
+          geometry Box { size 14.0 4.0 0.06 }
+        }
+      ]
+    }
+    # Antenna Meander Slot 1
+    Transform {
+      translation -3.5 -9.5 0.84
+      children [
+        Shape {
+          appearance Appearance { material Material { diffuseColor 0.05 0.28 0.12 } }
+          geometry Box { size 1.0 3.0 0.08 }
+        }
+      ]
+    }
+    # Antenna Meander Slot 2
+    Transform {
+      translation 1.5 -9.5 0.84
+      children [
+        Shape {
+          appearance Appearance { material Material { diffuseColor 0.05 0.28 0.12 } }
+          geometry Box { size 1.0 3.0 0.08 }
+        }
+      ]
+    }
+  ]
+}

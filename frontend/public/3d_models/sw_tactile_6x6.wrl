@@ -1,0 +1,61 @@
+#VRML V2.0 utf8
+# 6.0x6.0mm Tactile Pushbutton Switch
+Transform {
+  children [
+    Transform {
+      translation 0 0 1.25
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.15 0.12 0.1 specularColor 0.2 0.2 0.2 shininess 0.2 }
+          }
+          geometry Box { size 6.0 6.0 2.5 }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0 2.65
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.85 0.85 0.88
+              specularColor 0.95 0.95 0.98
+              shininess 0.9
+            }
+          }
+          geometry Box { size 6.0 6.0 0.3 }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0 3.4
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.08 0.08 0.08 specularColor 0.3 0.3 0.3 shininess 0.3 }
+          }
+          geometry Cylinder { radius 1.5 height 1.2 }
+        }
+      ]
+    }
+    Transform {
+      translation -3.3 0 0.5
+      children [
+        Shape {
+          appearance Appearance { material Material { diffuseColor 0.85 0.85 0.88 shininess 0.9 } }
+          geometry Box { size 0.8 5.0 0.4 }
+        }
+      ]
+    }
+    Transform {
+      translation 3.3 0 0.5
+      children [
+        Shape {
+          appearance Appearance { material Material { diffuseColor 0.85 0.85 0.88 shininess 0.9 } }
+          geometry Box { size 0.8 5.0 0.4 }
+        }
+      ]
+    }
+  ]
+}

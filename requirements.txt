@@ -1,0 +1,9 @@
+﻿iapws
+fastapi
+uvicorn[standard]
+websockets
+cryptography
+pydantic
+numpy
+pytest
+httpx

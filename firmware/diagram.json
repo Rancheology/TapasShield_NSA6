@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "author": "TapasShield NSA 6.0 Team",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_pt101",
+      "top": -160,
+      "left": -220,
+      "attrs": { "label": "PT-101 Pressure (0-25 bar)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_tt101",
+      "top": -60,
+      "left": -220,
+      "attrs": { "label": "TT-101 Steam Temp (0-350 C)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_tt102",
+      "top": 40,
+      "left": -220,
+      "attrs": { "label": "TT-102 Stack Temp (0-500 C)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_ft101",
+      "top": 140,
+      "left": -220,
+      "attrs": { "label": "FT-101 Steam Flow (0-5000 kg/h)" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_at101",
+      "top": 240,
+      "left": -220,
+      "attrs": { "label": "AT-101 Blowdown TDS (0-5000 ppm)" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_tamper",
+      "top": 360,
+      "left": -150,
+      "attrs": { "color": "red", "label": "Tamper Inject" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_verified",
+      "top": -80,
+      "left": 250,
+      "attrs": { "color": "green", "label": "Crypto Verified" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_tamper",
+      "top": 0,
+      "left": 250,
+      "attrs": { "color": "red", "label": "Tamper / IBR Alarm" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_green",
+      "top": -50,
+      "left": 250,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_red",
+      "top": 30,
+      "left": 250,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:GND.1", "pot_pt101:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "pot_pt101:VCC", "red", [ "v0" ] ],
+    [ "esp:1", "pot_pt101:SIG", "green", [ "v0" ] ],
+
+    [ "esp:GND.1", "pot_tt101:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "pot_tt101:VCC", "red", [ "v0" ] ],
+    [ "esp:2", "pot_tt101:SIG", "orange", [ "v0" ] ],
+
+    [ "esp:GND.1", "pot_tt102:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "pot_tt102:VCC", "red", [ "v0" ] ],
+    [ "esp:3", "pot_tt102:SIG", "blue", [ "v0" ] ],
+
+    [ "esp:GND.1", "pot_ft101:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "pot_ft101:VCC", "red", [ "v0" ] ],
+    [ "esp:10", "pot_ft101:SIG", "purple", [ "v0" ] ],
+
+    [ "esp:GND.1", "pot_at101:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "pot_at101:VCC", "red", [ "v0" ] ],
+    [ "esp:4", "pot_at101:SIG", "cyan", [ "v0" ] ],
+
+    [ "esp:GND.1", "btn_tamper:1.l", "black", [ "v0" ] ],
+    [ "esp:5", "btn_tamper:2.l", "yellow", [ "v0" ] ],
+
+    [ "esp:6", "r_green:1", "green", [ "v0" ] ],
+    [ "r_green:2", "led_verified:A", "green", [ "v0" ] ],
+    [ "esp:GND.2", "led_verified:C", "black", [ "v0" ] ],
+
+    [ "esp:7", "r_red:1", "red", [ "v0" ] ],
+    [ "r_red:2", "led_tamper:A", "red", [ "v0" ] ],
+    [ "esp:GND.2", "led_tamper:C", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

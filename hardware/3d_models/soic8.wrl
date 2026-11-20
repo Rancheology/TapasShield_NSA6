@@ -1,0 +1,51 @@
+#VRML V2.0 utf8
+# SOIC-8 IC Package
+Transform {
+  children [
+    Transform {
+      translation 0 0 0.95
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.12 0.12 0.14 specularColor 0.2 0.2 0.2 shininess 0.15 }
+          }
+          geometry Box { size 3.9 4.9 1.5 }
+        }
+      ]
+    }
+    # Pin 1 Indicator
+    Transform {
+      translation -1.2 -1.8 1.72
+      children [
+        Shape {
+          appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8 } }
+          geometry Cylinder { radius 0.25 height 0.06 }
+        }
+      ]
+    }
+    # Left Leads
+    Transform {
+      translation -2.25 0 0.4
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.85 0.85 0.88 specularColor 0.9 0.9 0.9 shininess 0.9 }
+          }
+          geometry Box { size 0.9 4.2 0.3 }
+        }
+      ]
+    }
+    # Right Leads
+    Transform {
+      translation 2.25 0 0.4
+      children [
+        Shape {
+          appearance Appearance {
+            material Material { diffuseColor 0.85 0.85 0.88 specularColor 0.9 0.9 0.9 shininess 0.9 }
+          }
+          geometry Box { size 0.9 4.2 0.3 }
+        }
+      ]
+    }
+  ]
+}
