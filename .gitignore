@@ -1,4 +1,4 @@
-﻿# Python & Conda
+# Python & Conda
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -6,13 +6,25 @@ __pycache__/
 venv/
 *.egg-info/
 
-# Presentation temporary renders & bulk scratch caches
-# (Keep scripts, HTML templates, visual guides & final deck deliverables tracked)
+# Internal presentation generator scripts, assets & caches
+presentation/*.py
+presentation/deck_html/
+presentation/assets/
+presentation/dynamic_assets/
+presentation/visual_guide_assets/
+presentation/visual_guides/
 presentation/audit_slides/
 presentation/screenshots/
 presentation/slides_pptx_images/
 presentation/__pycache__/
 presentation/*.tmp
+presentation/TapasShield_NSA6_Complete_15Slides.pdf
+presentation/TapasShield_NSA6_Pitch_Deck.pptx
+presentation/TapasShield_NSA6_Pitch_Deck_10Slides.pdf
+
+# Internal automation and capture scripts
+scripts/
+dev_tests/
 
 # Frontend dependencies & local build outputs
 frontend/node_modules/

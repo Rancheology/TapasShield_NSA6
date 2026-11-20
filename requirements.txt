@@ -10,10 +10,3 @@ numpy>=1.26.0
 # Automated Test Suite & API Client
 pytest>=8.0.0
 httpx>=0.27.0
-
-# Presentation Pipeline, Deck Verification & Asset Generation
-Pillow>=10.0.0
-pymupdf>=1.24.0
-python-pptx>=1.0.0
-matplotlib>=3.8.0
-playwright>=1.42.0
